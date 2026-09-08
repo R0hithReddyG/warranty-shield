@@ -1,0 +1,65 @@
+# Warranty Shield — Application Configuration
+# This file centralizes business rules and thresholds.
+
+app:
+  name: "Warranty Shield"
+  version: "1.0.0"
+  environment: "development"  # development | staging | production
+  debug: true
+
+# Risk scoring thresholds
+scoring:
+  high_risk_threshold: 70
+  medium_risk_threshold: 40
+  # Early-claim windows (days since purchase)
+  early_claim_urgent_days: 14
+  early_claim_watch_days: 30
+  # Reimbursement thresholds (₹)
+  high_amount_threshold: 1500
+  medium_amount_threshold: 750
+  # Prior claim history
+  high_prior_claims: 3
+  any_prior_claims: 1
+  high_prior_value: 2000
+  # Narrative red-flag keywords
+  red_flag_keywords:
+    - lost
+    - stolen
+    - urgent
+    - cash
+    - refund
+    - no receipt
+    - discarded
+  red_flag_max_score: 15
+  red_flag_per_match: 5
+  # Missing identifier penalty
+  missing_serial_penalty: 8
+  # Higher-risk issue categories
+  high_risk_categories:
+    - Lost / stolen
+    - Accidental damage
+
+# Database
+database:
+  path: "./data/warranty_shield.db"
+  echo: false
+  connect_args:
+    check_same_thread: false
+
+# UI
+ui:
+  page_title: "Warranty Shield"
+  page_icon: "🛡️"
+  layout: "wide"
+  initial_sidebar_state: "expanded"
+
+# Demo data
+demo:
+  enabled: true
+  seed_on_empty: true
+
+# LangGraph integration (future agentic workflows)
+langgraph:
+  enabled: false
+  model: "claude-sonnet-4-20250514"
+  max_tokens: 1024

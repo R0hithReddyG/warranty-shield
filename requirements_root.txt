@@ -1,0 +1,5 @@
+# Top-level requirements for cloud deployments (Streamlit Community Cloud,
+# Railway, Render, Hugging Face Spaces, etc.)
+# Cloud platforms run `pip install -r requirements.txt` at the repo root.
+
+-r requirements.txt

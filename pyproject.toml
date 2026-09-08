@@ -1,0 +1,82 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel>=0.42.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "warranty-shield"
+version = "1.0.0"
+description = "Explainable warranty-claim risk triage app with LangGraph integration"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Warranty Shield Team" }]
+keywords = ["warranty", "risk-triage", "langgraph", "streamlit", "explainable-ai"]
+
+dependencies = [
+    "streamlit>=1.40.0",
+    "pandas>=2.2.0",
+    "plotly>=5.22.0",
+    "pydantic>=2.9.0",
+    "pydantic-settings>=2.5.0",
+    "python-dotenv>=1.0.0",
+    "pyyaml>=6.0.0",
+    "langgraph>=0.2.0",
+    "langchain>=0.3.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.3.0",
+    "pytest-cov>=5.0.0",
+    "pytest-asyncio>=0.23.0",
+    "ruff>=0.6.0",
+    "mypy>=1.11.0",
+]
+prod = [
+    "gunicorn>=23.0.0",
+    "uvicorn>=0.30.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/warranty-shield/warranty-shield"
+Repository = "https://github.com/warranty-shield/warranty-shield"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["app*"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = [
+    "E",   # pycodestyle errors
+    "W",   # pycodestyle warnings
+    "F",   # pyflakes
+    "I",   # isort
+    "B",   # flake8-bugbear
+    "C4",  # flake8-comprehensions
+    "UP",  # pyupgrade
+]
+ignore = ["E501"]  # line length handled by formatter
+
+[tool.ruff.lint.isort]
+known-first-party = ["app"]
+
+[tool.pytest.ini_options]
+minversion = "8.0"
+addopts = "-v --strict-markers"
+testpaths = ["tests"]
+asyncio_mode = "auto"
+
+[tool.coverage.run]
+source = ["app"]
+branch = true
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "raise NotImplementedError",
+    "if TYPE_CHECKING:",
+]
