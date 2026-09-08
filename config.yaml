@@ -60,6 +60,6 @@ demo:
 
 # LangGraph integration (future agentic workflows)
 langgraph:
-  enabled: false
+  enabled: true
   model: "claude-sonnet-4-20250514"
   max_tokens: 1024

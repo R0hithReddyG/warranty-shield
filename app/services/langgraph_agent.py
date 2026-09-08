@@ -314,7 +314,10 @@ def process_claim(claim_data: dict) -> dict[str, Any]:
         metadata={},
     )
 
-    result = app.invoke(initial_state)
+    result = app.invoke(
+        initial_state,
+        config={"configurable": {"thread_id": claim_data.get("claim_id", "default")}},
+    )
 
     return {
         "decision": result.get("decision", "pending"),

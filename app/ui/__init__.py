@@ -11,6 +11,7 @@ from app.config import settings
 from app.models import ClaimCategory, ClaimStatus, ScoringResult, WarrantyClaim
 from app.services import ScoringEngine
 from app.services import service as claim_service
+from app.services.langgraph_agent import process_claim
 from app.utils import (
     format_currency,
     format_date,
@@ -319,16 +320,32 @@ def run_app():
     with tab1:
         form_data = render_claim_form()
         if form_data:
-            # Create the claim via service
             claim = WarrantyClaim(**form_data)
             result = claim_service.create_claim(claim)
             st.session_state.claims[result.claim_id] = result
             st.success(f"Claim submitted successfully! ID: {result.claim_id}")
 
-            # Calculate and display risk score
+            agent_result = process_claim(form_data)
+            st.session_state.processed_claims[result.claim_id] = agent_result
+            for event in agent_result.get("events", []):
+                event["claim_id"] = result.claim_id
+                st.session_state.agent_events.append(event)
+            st.session_state.agent_events.append({
+                "event_type": "decision",
+                "claim_id": result.claim_id,
+                "step": "final_decision",
+                "data": {
+                    "decision": agent_result.get("decision"),
+                    "reason": agent_result.get("reason"),
+                    "risk_score": agent_result.get("risk_score"),
+                    "risk_level": agent_result.get("risk_level"),
+                },
+            })
+
             engine = ScoringEngine()
             score_result = engine.calculate_score(result)
             render_scoring_result(score_result)
+            st.info(f"Agent decision: {agent_result.get('decision')} — {agent_result.get('reason')}")
 
             st.session_state.claim_in_progress = True
 

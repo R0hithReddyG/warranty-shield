@@ -3,6 +3,8 @@ Configuration module for Warranty Shield.
 Handles loading and validation of application settings.
 """
 
+from pathlib import Path
+
 from pydantic import BaseModel, Field
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
@@ -63,7 +65,7 @@ class DemoSettings(BaseModel):
 
 class LangGraphSettings(BaseModel):
     """LangGraph integration settings."""
-    enabled: bool = Field(default=False, description="Whether LangGraph integration is enabled")
+    enabled: bool = Field(default=True, description="Whether LangGraph integration is enabled")
     model: str = Field(default="claude-sonnet-4-20250514", description="LLM model to use")
     max_tokens: int = Field(default=1024, ge=1, description="Maximum tokens for LLM responses")
 
