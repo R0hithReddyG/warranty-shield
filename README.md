@@ -2,10 +2,10 @@
 
 Explainable warranty-claim risk triage app with LangGraph integration.
 
-[![Live Demo](https://img.shields.io/badge/🛡️-Live%20Demo-4B7BEC?style=for-the-badge)](https://<your-app-url>.streamlit.app)
-[![CI](https://github.com/<your-username>/warranty-shield/actions/workflows/ci.yml/badge.svg)](https://github.com/<your-username>/warranty-shield/actions)
+[![Live Demo](https://img.shields.io/badge/🛡️-Live%20Demo-4B7BEC?style=for-the-badge)](https://<your-app-slug>.streamlit.app)
+[![CI](https://github.com/R0hithReddyG/warranty-shield/actions/workflows/ci.yml/badge.svg)](https://github.com/R0hithReddyG/warranty-shield/actions)
 
-> **👆 Replace `<your-app-url>` and `<your-username>` after deploying — see [DEPLOY.md](DEPLOY.md) for a 5-minute guide to a free public URL.**
+> **👆 Replace `<your-app-slug>` in the badge above with your Streamlit Cloud app slug after deploying — see [DEPLOY.md](DEPLOY.md) for the 5-minute guide.**
 
 Warranty Shield helps warranty teams triage incoming claims by computing an
 explainable risk score for every claim, surfacing red flags, and routing

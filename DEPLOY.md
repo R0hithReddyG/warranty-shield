@@ -16,7 +16,7 @@ git init
 git add .
 git commit -m "Warranty Shield: explainable warranty-claim risk triage"
 git branch -M main
-git remote add origin https://github.com/<your-username>/warranty-shield.git
+git remote add origin https://github.com/R0hithReddyG/warranty-shield.git
 git push -u origin main
 ```
 
@@ -27,7 +27,7 @@ git push -u origin main
 1. Go to **https://share.streamlit.io** and sign in with your GitHub account.
 2. Click **"Create app" → "Paste GitHub repo URL"** (or authorize repo access and pick the repo).
 3. Fill in:
-   - **Repository:** `<your-username>/warranty-shield`
+   - **Repository:** `R0hithReddyG/warranty-shield`
    - **Branch:** `main`
    - **Main file path:** `app/main.py`
    - **App URL:** pick a nice slug, e.g. `warranty-shield` → `https://warranty-shield.streamlit.app`
@@ -41,7 +41,7 @@ wakes the app on demand; after ~7 days of inactivity it sleeps and redeploys on 
 ```
 Warranty Shield — Explainable warranty-claim risk triage (Python, Streamlit, LangGraph)
 🔗 Live demo: https://warranty-shield.streamlit.app
-🔗 Code: https://github.com/<your-username>/warranty-shield
+🔗 Code: https://github.com/R0hithReddyG/warranty-shield
 ```
 
 ---
